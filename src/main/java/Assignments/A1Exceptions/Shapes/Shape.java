@@ -1,4 +1,4 @@
-package ClassWork.ReviewWithShapes;
+package Assignments.A1Exceptions.Shapes;
 
 /**
  * an abstract shape class with area and a description

@@ -1,12 +1,17 @@
-package ClassWork.ReviewWithShapes;
+package Assignments.A1Exceptions.Shapes;
 
+
+import Assignments.A1Exceptions.InvalidShapeParameterException;
 
 /**
  * @author Parker Wallace
  */
 class Circle extends Shape {
     Double radius;
-    public Circle(Double radius) {
+    public Circle(Double radius) throws InvalidShapeParameterException {
+        if (radius <= 0) {
+            throw new InvalidShapeParameterException();
+        }
         this.radius = radius;
     }
 
