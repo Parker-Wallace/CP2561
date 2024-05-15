@@ -1,4 +1,4 @@
-package ClassWork.ReviewWithShapes;
+package ClassWork.May7thReviewExercise;
 
 /**
  * an abstract shape class with area and a description

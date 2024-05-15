@@ -1,4 +1,4 @@
-package ClassWork.ReviewWithShapes;
+package ClassWork.May7thReviewExercise;
 
 class Rectangle extends Shape {
     double length;
