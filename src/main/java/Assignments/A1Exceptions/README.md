@@ -137,13 +137,15 @@ this, you may use the zipped folder “review_soln.zip” posted on d2l) ( 12 ma
       exception and rethrow it. Call someMethod from method main, and
       catch the rethrown exception. Print the stack trace of this exception. ( 5 marks )
    
-   >[Solution](BookExercises/Q11_20/Main.java)
+   > [Solution](BookExercises/Q11_20/Main.java)
 
    4. Exercise: Create a class “WeightConverter” which has two methods to perform
    conversions, “poundsToKilos” and “kilosToPounds”. Add assertions to these
    methods to prevent the conversion of weights less than or equal to 0. Create a main
    method which tests these two methods with correct values and incorrect values. ( 4
    marks)
+
+   > [Solution](WeightConverter.java)
 
 
 6. Question: How do you enable assertions in Java? What happens when you release
