@@ -54,7 +54,7 @@ public static void cat(File file) {
 > }
 > ```
 
->However, it is best practice to utilize a try-catch block. Here's an alternative:
+> However, it is best practice to utilize a try-catch block. Here's an alternative:
 > ```java
 > import java.io.File;
 > import java.io.IOException;
@@ -77,18 +77,31 @@ this, you may use the zipped folder “review_soln.zip” posted on d2l) ( 12 ma
          - It should contain a private static final string called MSG that says “Shape parameter is not
                valid!” 
          - Create a default constructor that uses this message
-   >[Solution](Shapes/InvalidShapeParameterException.java)
+      
+   > [Solution](Shapes/InvalidShapeParameterException.java)
+
    2. Whenever anyone tries to set an invalid value (negative number) into a Rectangle or a Circle
       throw an exception. (Throw the exception anywhere appropriate to prevent a shape from
       getting an invalid parameter.) ( 3 marks )
-   >[Rectangle Solution](Shapes/Rectangle.java) - [Circle Solution](Shapes/Circle.java)
+   
+   > [Rectangle Solution](Shapes/Rectangle.java)
+   > 
+   > [Circle Solution](Shapes/Circle.java)
+
    3. Update CircleTester and ShapeTester objects to test that the exception works. (3 marks )
-   >[Circle Tester Solution](Shapes/CircleExceptionTest.java) -  [rectangle test Solution](Shapes/RectangleExceptionTest.java)   
+   
+   > [Circle Tester Solution](Shapes/CircleExceptionTest.java)
+   > 
+   > [Rectangle test Solution](Shapes/RectangleExceptionTest.java)  
+
    4. In your ShapeGenerator object, generate negative and positive integers and catch the thrown
       Exceptions from negative values. (Be sure to print out when you encounter a negative
       parameter so the exception working can be demonstrated when your main application
       executes.) ( 3 marks )
-   >[shape Generator Object](Shapes/ShapeGenerator.java) - [Main](Shapes/FunWithShapes.java)
+   
+   >[Shape Generator Object](Shapes/ShapeGenerator.java)
+   > 
+   > [Main](Shapes/FunWithShapes.java)
 
 
 5. Book exercises from [Java: how to program early objects pg.1342](https://github.com/pkdandan/books-2/blob/master/Java%20How%20to%20Program%2011th%20Early%20Objects.pdf)
@@ -98,17 +111,34 @@ this, you may use the zipped folder “review_soln.zip” posted on d2l) ( 12 ma
       ExceptionA and ExceptionC inherits from ExceptionB. Write a
       program to demonstrate that the catch block for type ExceptionA
       catches exceptions of types ExceptionB and ExceptionC. ( 6 marks )
+   
+   > [ExceptionA](BookExercises/Q11_16/ExceptionA.java)
+   > 
+   > [ExceptionB](BookExercises/Q11_16/ExceptionB.java)
+   > 
+   > [ExceptionC](BookExercises/Q11_16/ExceptionC.java) 
+   > 
+   > [Test](BookExercises/Q11_16/Test.java)
+
    2. 11.19 (Constructor Failure) Write a program that shows a constructor
       passing information about constructor failure to an exception handler.
       Define class SomeClass, which throws an Exception in the
       constructor. Your program should try to create an object of type
       SomeClass and catch the exception that’s thrown from the constructor. ( 5 marks )
+   
+   > [Constructor](BookExercises/Q11_19/BadConstructor.java)
+   >
+   > [Test Program](BookExercises/Q11_19/Main.java)
+
    3. 11.20 (Rethrowing Exceptions) Write a program that illustrates
       rethrowing an exception. Define methods someMethod and
       someMethod2. Method someMethod2 should initially throw an
       exception. Method someMethod should call someMethod2, catch the
       exception and rethrow it. Call someMethod from method main, and
       catch the rethrown exception. Print the stack trace of this exception. ( 5 marks )
+   
+   >[Solution](BookExercises/Q11_20/Main.java)
+
    4. Exercise: Create a class “WeightConverter” which has two methods to perform
    conversions, “poundsToKilos” and “kilosToPounds”. Add assertions to these
    methods to prevent the conversion of weights less than or equal to 0. Create a main
