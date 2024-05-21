@@ -1,6 +1,3 @@
-
-
-
 /**
  * This package contains classes and subpackages created for Assignment #1.
  * It includes classes related to error handling including try-catch, exceptions, and assertions.
