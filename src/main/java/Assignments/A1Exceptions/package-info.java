@@ -10,7 +10,7 @@
  *         along with related utilities and tests.</li>
  * </ul>
  * <p>
- * Additionally, the package includes a {@link WeightConverter} class for weight conversion functionalities.
+ * Additionally, the package includes a {@link Assignments.A1Exceptions.WeightConverter} class for weight conversion functionalities.
  * <p>
  * Each subpackage may contain additional classes and interfaces relevant to its specific topic.
  * @author Parker Wallace
