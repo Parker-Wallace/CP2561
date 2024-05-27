@@ -36,3 +36,7 @@ build/
 
 ### Mac OS ###
 .DS_Store
+
+### other ###
+
+/src/main/java/ClassWork/FunWithIOandFiles/logs/.txt
