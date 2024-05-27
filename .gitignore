@@ -39,4 +39,4 @@ build/
 
 ### other ###
 
-/src/main/java/ClassWork/FunWithIOandFiles/logs/.txt
+/src/main/java/ClassWork/FunWithIOandFiles/logs/*.txt
