@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 public class AnalyzeLogs {
     public static void main(String[] args) {
-        Path path = Paths.get("./logs");
+        Path path = Paths.get("\"src/main/java/ClassWork/FunWithIOandFiles/logs\"");
         if (Files.exists(path))
         {
             System.out.println("Folder exists");
