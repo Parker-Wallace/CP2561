@@ -39,5 +39,5 @@ build/
 
 ### other ###
 
-/src/main/java/ClassWork/**/logs/*.txt
-/src/main/java/ClassWork/**/logs/*.xml
+/src/main/java/**/**/logs/*.txt
+/src/main/java/**/**/logs/*.xml
