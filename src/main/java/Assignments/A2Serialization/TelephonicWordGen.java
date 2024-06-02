@@ -38,9 +38,8 @@ public class TelephonicWordGen {
         }
 
         char digit = String.valueOf(phoneNumber).charAt(index);
-
-
         List<String> letters = correspondence.get(digit);
+        
             for (String letter : letters) {
                 generateWords(phoneNumber, index + 1, currentWord + letter, correspondence, result);
 
@@ -62,7 +61,7 @@ public class TelephonicWordGen {
         String filePath = "src/main/java/Assignments/A2Serialization/logs/phonicword.txt";
         Scanner input = new Scanner(System.in);
         try {
-            System.out.println("enter a 7 digit phone number, please omit any dashes (-)");
+            System.out.println("enter a 7 digit phone number, [0,1] exclusive");
             int phoneNumber = input.nextInt();
             if (String.valueOf(phoneNumber).length() != 7)
             {throw new IllegalArgumentException("phone number must be 7 digits");}
@@ -76,10 +75,10 @@ public class TelephonicWordGen {
         }
             catch (InputMismatchException e) {
                 System.out.println("the number you entered either isnt a number or was an invalid format");
-                System.out.println("example of invalid inputs:");
-                System.out.println("879-1234");
+                System.out.println("example of invalid input:");
+                System.out.println("879-3234");
                 System.out.println("valid equivalent");
-                System.out.println("8791234");
+                System.out.println("8796234");
             }
         catch (Exception e) {
             System.out.println(e);
