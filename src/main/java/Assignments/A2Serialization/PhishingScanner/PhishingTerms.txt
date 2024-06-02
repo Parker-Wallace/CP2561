@@ -1,7 +1,6 @@
 invoice 1
 payment 3
 invoice  3
-ACH  1
 deposit  3
 wire  1
 loan  3
