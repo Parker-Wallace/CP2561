@@ -72,6 +72,7 @@ public class TelephonicWordGen {
             catch (Exception e) {
                 System.out.println(e);
             }
+
         }
             catch (InputMismatchException e) {
                 System.out.println("the number you entered either isnt a number or was an invalid format");
@@ -84,6 +85,8 @@ public class TelephonicWordGen {
             System.out.println(e);
         }
 
-
+finally {
+    input.close();
+}
     }
 }
