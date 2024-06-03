@@ -18,8 +18,8 @@ included in this wiki and adjoining repository
 
 | Page | Description| Code |
 |---|---|---|
-|[Assignment 01](https://github.com/Parker-Wallace/CP2561/wiki/Assignment-1-Exception-Handling)|Introduction to exception handling and the `try{...} catch{}...` block|[Link](https://github.com/Parker-Wallace/CP2561/tree/master/src/main/java/Assignments/A1Exceptions)|
-|[Assignment 2: Working With Files](https://github.com/Parker-Wallace/CP2561/wiki/Assignment-2-Files)|Utilization of `BufferedReader.Writer` and Serialization|[Link](https://github.com/Parker-Wallace/CP2561/tree/master/src/main/java/Assignments/A2Serialization)|
+|[Assignment 01: Exceptions](https://github.com/Parker-Wallace/CP2561/wiki/Assignment-1-Exception-Handling)|Introduction to exception handling and the `try{...} catch{}...` block|[Link](https://github.com/Parker-Wallace/CP2561/tree/master/src/main/java/Assignments/A1Exceptions)|
+|[Assignment 02: Working With Files](https://github.com/Parker-Wallace/CP2561/wiki/Assignment-2-Files)|Utilization of `BufferedReader.Writer` and Serialization|[Link](https://github.com/Parker-Wallace/CP2561/tree/master/src/main/java/Assignments/A2Serialization)|
 
 ### ClassWork
 
