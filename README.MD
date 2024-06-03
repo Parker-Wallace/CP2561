@@ -25,5 +25,5 @@ included in this wiki and adjoining repository
 
 | Page |Description| Code |
 |---|---|---|
-|[Fun With IO & Files](https://github.com/Parker-Wallace/CP2561/wiki/Classwork#Utlizing-IO-Files-and-the-PrintStream)|Introduction to `stream` and working with files|[Link](https://github.com/Parker-Wallace/CP2561/tree/master/src/main/java/ClassWork/FunWithIOandFiles)|
-|[Working with Serialization](https://github.com/Parker-Wallace/CP2561/wiki/Classwork#Working-With-Serialization-and-Writing-to-XML)| introduction to serialization working with BufferWriter writing to `xml`|[Link](https://github.com/Parker-Wallace/CP2561/tree/master/src/main/java/ClassWork/WorkingWithSerialization)|
+|[Fun With IO & Files](https://github.com/Parker-Wallace/CP2561/tree/master/src/main/java/ClassWork/FunWithIOandFiles|Introduction to `stream` and working with files|[Link](https://github.com/Parker-Wallace/CP2561/tree/master/src/main/java/ClassWork/FunWithIOandFiles)|
+|[Working with Serialization](https://github.com/Parker-Wallace/CP2561/tree/master/src/main/java/ClassWork/WorkingWithSerialization)| introduction to serialization working with BufferWriter writing to `xml`|[Link](https://github.com/Parker-Wallace/CP2561/tree/master/src/main/java/ClassWork/WorkingWithSerialization)|
