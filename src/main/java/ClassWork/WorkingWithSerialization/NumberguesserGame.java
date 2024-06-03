@@ -47,6 +47,7 @@ public class NumberguesserGame {
                 }
             }
             JAXB.marshal(gamelog, output);
+            input.close();
         }
         catch (Exception e) {
             System.out.println(e);
