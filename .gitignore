@@ -41,3 +41,4 @@ build/
 
 /src/main/java/**/**/logs/*.txt
 /src/main/java/**/**/logs/*.xml
+/logs/*

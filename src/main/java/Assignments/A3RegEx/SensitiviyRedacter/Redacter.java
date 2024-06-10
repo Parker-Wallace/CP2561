@@ -11,7 +11,7 @@ import java.util.List;
 public class Redacter {
     public static void main(String[] args) {
         Path readPath = Paths.get("src/main/java/Assignments/A3RegEx/SensitiviyRedacter/sampleInfo.txt");
-        String writePath = "src/main/java/Assignments/A3RegEx/SensitiviyRedacter/sampleInfoRedacted.txt";
+        String writePath = "logs/sampleInfoRedacted.txt";
         try {
             List<String> allLines = Files.readAllLines(readPath);
             try (BufferedWriter writer = new BufferedWriter(new FileWriter(writePath))) {

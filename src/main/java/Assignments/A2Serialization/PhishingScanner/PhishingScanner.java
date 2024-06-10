@@ -15,7 +15,7 @@ public class PhishingScanner {
         Path PhisingTerms = Paths.get("src/main/java/Assignments/A2Serialization/PhishingScanner/PhishingTerms.txt");
 
         // try with resources to create the file reader to write the security summary
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter("src/main/java/Assignments/A2Serialization/logs/emailSecuritylog.txt"))) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("/logs/emailSecurityLog.txt"))) {
             // write the header and initialize the total security risk score
             writer.write("Keyword\tOccurences\tSecurity Score\n");
             int emailSecurityScore = 0;

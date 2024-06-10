@@ -58,7 +58,7 @@ public class TelephonicWordGen {
         correspondence.put('8', List.of("T", "U", "V"));
         correspondence.put('9', List.of("W", "X", "Y"));
 
-        String filePath = "src/main/java/Assignments/A2Serialization/logs/phonicword.txt";
+        String filePath = "/logs/phonicword.txt";
         Scanner input = new Scanner(System.in);
         try {
             System.out.println("enter a 7 digit phone number, [0,1] exclusive");
