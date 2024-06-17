@@ -11,6 +11,7 @@ public class Main {
     public static void main(String[] args) {
         try {
             BadConstructor someobject = new BadConstructor();
+            System.out.println(someobject);
         } catch (Exception e) {
             System.err.println(e);
         }

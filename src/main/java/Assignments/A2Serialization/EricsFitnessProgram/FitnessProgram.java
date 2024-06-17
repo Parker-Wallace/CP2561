@@ -3,8 +3,6 @@ package Assignments.A2Serialization.EricsFitnessProgram;
 import javax.xml.bind.JAXB;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.File;
-import java.io.OutputStream;
 import java.nio.file.*;
 import java.util.Scanner;
 
@@ -40,22 +38,24 @@ public class FitnessProgram {
                 case 2:
                     try (BufferedWriter writer = Files.newBufferedWriter(path)) {
                         Settings settings = new Settings();
-                        Scanner userInput = new Scanner(System.in);
-                        System.out.println("please enter name");
-                        settings.setName(userInput.next());
-                        System.out.println("please enter height");
-                        settings.setHeight(userInput.nextInt());
-                        System.out.println("please enter weight");
-                        settings.setWeight(userInput.nextInt());
-                        System.out.println("please enter birthday");
-                        settings.setBirthday(userInput.next());
-                        System.out.println("please enter ftp");
-                        settings.setFtp(userInput.nextInt());
+                        try (Scanner userInput = new Scanner(System.in)) {
+                            System.out.println("please enter name");
+                            settings.setName(userInput.next());
+                            System.out.println("please enter height");
+                            settings.setHeight(userInput.nextInt());
+                            System.out.println("please enter weight");
+                            settings.setWeight(userInput.nextInt());
+                            System.out.println("please enter birthday");
+                            settings.setBirthday(userInput.next());
+                            System.out.println("please enter ftp");
+                            settings.setFtp(userInput.nextInt());
+                        }
                         JAXB.marshal(settings, writer);
                     }
                     catch (Exception e) {
                         System.out.println(e);
                     }
+                    
                 case 3: continue;
                 default:
                     System.out.println("invalid input please try again...");

@@ -12,7 +12,7 @@ class CircleExceptionTest {
         assertNotNull(circle);
 
         assertThrows(InvalidShapeParameterException.class, () -> {
-            Circle badCircle = new Circle(-5.5);
+            new Circle(-5.5);
         });}
 
 

@@ -25,20 +25,21 @@ public class NumberguesserGame {
         String filePath = String.format("src/main/java/ClassWork/FunWithIOandFiles/logs/gamelog%s.txt", timeStamp);
 
         try (Formatter output = new Formatter(filePath)) {
-            Scanner input = new Scanner(System.in);
-            System.out.println("im Thinking of a number between one and one-hundred, can you guess it?");
-            int guess = 0;
-            while (guess != randomNumber) {
-                guess = input.nextInt();
-                if (guess > randomNumber) {
-                    System.out.println("my number is Lower than that! Try again...");
-                    output.format("%d%n", guess);
-                } else if (guess < randomNumber) {
-                    System.out.println("my number is higher than that! try again...");
-                    output.format("%d%n", guess);
-                } else {
-                    System.out.println("holy moly you got it! good job");
-                    output.format("%d%n", guess);
+            try (Scanner input = new Scanner(System.in)) {
+                System.out.println("im Thinking of a number between one and one-hundred, can you guess it?");
+                int guess = 0;
+                while (guess != randomNumber) {
+                    guess = input.nextInt();
+                    if (guess > randomNumber) {
+                        System.out.println("my number is Lower than that! Try again...");
+                        output.format("%d%n", guess);
+                    } else if (guess < randomNumber) {
+                        System.out.println("my number is higher than that! try again...");
+                        output.format("%d%n", guess);
+                    } else {
+                        System.out.println("holy moly you got it! good job");
+                        output.format("%d%n", guess);
+                    }
                 }
             }
         }

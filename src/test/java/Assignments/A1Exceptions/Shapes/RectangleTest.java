@@ -13,11 +13,11 @@ class RectangleExceptionTest {
 
 
         assertThrows(InvalidShapeParameterException.class, () -> {
-            Rectangle badWidthRectangle = new Rectangle(1.0, -1.0);
+            new Rectangle(1.0, -1.0);
         });
 
         assertThrows(InvalidShapeParameterException.class, ()-> {
-            Rectangle badLengthRectangle = new Rectangle(-1.0,1.0);
+            new Rectangle(-1.0,1.0);
         });
     }
 

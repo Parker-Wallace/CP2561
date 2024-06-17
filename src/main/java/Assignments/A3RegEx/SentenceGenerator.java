@@ -1,6 +1,5 @@
 package Assignments.A3RegEx;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;

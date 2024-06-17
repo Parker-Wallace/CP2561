@@ -5,10 +5,11 @@ import java.util.Scanner;
 public class SentenceReverser {
 
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("write a sentence to be reversed");
-        String sample = scanner.nextLine();
-        System.out.println(reverseSentence(sample));
+        try (Scanner scanner = new Scanner(System.in)) {
+            System.out.println("write a sentence to be reversed");
+            String sample = scanner.nextLine();
+            System.out.println(reverseSentence(sample));
+        }
     }
 
 

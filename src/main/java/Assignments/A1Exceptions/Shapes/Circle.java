@@ -1,7 +1,5 @@
 package Assignments.A1Exceptions.Shapes;
 
-import Assignments.A1Exceptions.Shapes.InvalidShapeParameterException;
-
 /**
  * Represents a Circle shape.
  * Extends the abstract Shape class.
