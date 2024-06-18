@@ -26,21 +26,16 @@ Use a regular expression to validate the license id.
 
 
 Sample output:
-
 ```
 enter your racing license
-CAN2022D5_23
+# CAN2022D5_23
 Invalid license, please try again
-enter your racing license
-MEX2021D2_53234
+Enter your racing license
+# MEX2021D2_53234
 You are registered for the race
 
 finished with exit code 0
 ```
-
-
-
-
 
 # Question 2
 
