@@ -3,11 +3,14 @@ package Assignments.A4;
 // Fig. 16.3: ListTest.java
 // Lists, LinkedLists and ListIterators.
 import java.util.List;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.ListIterator;
 
 public class ListTest {
-   public static void main(String[] args) {
+   
+      public static void main(String[] args) {
+   /**   
       // add colors elements to list1
       String[] colors = 
          {"black", "yellow", "green", "blue", "violet", "silver"};
@@ -21,10 +24,17 @@ public class ListTest {
       String[] colors2 = 
          {"gold", "white", "brown", "blue", "gray", "silver"};
       List<String> list2 = new LinkedList<>();
-
+      
       for (String color : colors2) {
          list2.add(color);
       }
+   **/
+
+      LinkedList<String> list1 = new LinkedList<>(Arrays.asList("black", "yellow", "green", "blue", "violet", "silver"));
+      LinkedList<String> list2 = new LinkedList<>(Arrays.asList("gold", "white", "brown", "blue", "gray", "silver"));
+
+
+   
 
       list1.addAll(list2); // concatenate lists
       list2 = null; // release resources
