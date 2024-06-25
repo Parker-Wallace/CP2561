@@ -30,8 +30,8 @@ public class ListTest {
       }
    **/
 
-      LinkedList<String> list1 = new LinkedList<>(Arrays.asList("black", "yellow", "green", "blue", "violet", "silver"));
-      LinkedList<String> list2 = new LinkedList<>(Arrays.asList("gold", "white", "brown", "blue", "gray", "silver"));
+      List<String> list1 = new LinkedList<>(Arrays.asList("black", "yellow", "green", "blue", "violet", "silver"));
+      List<String> list2 = new LinkedList<>(Arrays.asList("gold", "white", "brown", "blue", "gray", "silver"));
 
 
    

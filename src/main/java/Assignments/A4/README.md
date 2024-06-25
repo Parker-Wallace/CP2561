@@ -25,12 +25,8 @@ object whose current size is at its capacity is a relatively slow operation.
     Iterator? If yes, how?
           <details>
         <summary>Answer</summary>
-        you can print the elements without using explicit iterators by individually printing the index of each item
-        
-        <code>system.out.println(List[index])
-        system.out.println(List[index])
-        system.out.println(List[index])</code>
-        etc...
+        you can print the elements without using explicit iterators by individually printing the index of each item.
+        <code>system.out.println(List[index])</code>
         </details>
 
 3. Rewrite lines 10–25 in [Fig. 16.](ListTest.java) to be more concise by using the
