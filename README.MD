@@ -16,20 +16,22 @@ included in this wiki and adjoining repository
 
 ### Assignments
 
-| Page | Description| Code |
-|---|---|---|
-|[Assignment 01: Exceptions](https://github.com/Parker-Wallace/CP2561/wiki/Assignment-1-Exception-Handling)|Introduction to exception handling and the `try{...} catch{}...` block|[Link](https://github.com/Parker-Wallace/CP2561/tree/master/src/main/java/Assignments/A1Exceptions)|
-|[Assignment 02: Working With Files](https://github.com/Parker-Wallace/CP2561/wiki/Assignment-2-Files)|Utilization of `BufferedReader.Writer` and Serialization|[Link](https://github.com/Parker-Wallace/CP2561/tree/master/src/main/java/Assignments/A2Serialization)|
+| Page | Description|
+|---|---|
+|[Assignment 01: Exceptions](https://github.com/Parker-Wallace/CP2561/tree/master/src/main/java/Assignments/A1)|Introduction to exception handling and the `try{...} catch{}...` block|
+|[Assignment 02: Working With Files](https://github.com/Parker-Wallace/CP2561/tree/master/src/main/java/Assignments/A2)|Utilization of `BufferedReader.Writer` and Serialization|
+|[Assignment 03: RegEx](https://github.com/Parker-Wallace/CP2561/tree/master/src/main/java/Assignments/A3)|Working with regular expression and String manipulation|
+|[Assignment 04: Arrays](https://github.com/Parker-Wallace/CP2561/tree/master/src/main/java/Assignments/A4)|utilizing `LinkedList()` and `asList`|
 
 ### ClassWork
 
 | Page |Description| Code |
 |---|---|---|
-|[Fun With IO & Files](https://github.com/Parker-Wallace/CP2561/tree/master/src/main/java/ClassWork/FunWithIOandFiles)|Introduction to `stream` and working with files|[Link](https://github.com/Parker-Wallace/CP2561/tree/master/src/main/java/ClassWork/FunWithIOandFiles)|
-|[Working with Serialization](https://github.com/Parker-Wallace/CP2561/tree/master/src/main/java/ClassWork/WorkingWithSerialization)| introduction to serialization working with BufferWriter writing to `xml`|[Link](https://github.com/Parker-Wallace/CP2561/tree/master/src/main/java/ClassWork/WorkingWithSerialization)|
+|[Fun With IO & Files](https://github.com/Parker-Wallace/CP2561/tree/master/src/main/java/ClassWork/FunWithIOandFiles)|Introduction to `stream` and working with files|
+|[Working with Serialization](https://github.com/Parker-Wallace/CP2561/tree/master/src/main/java/ClassWork/WorkingWithSerialization)| introduction to serialization working with BufferWriter writing to `xml`|
 
 ### Tests
 
-| Code |Topics| Instructions |
+| Code | Topics | Instructions |
 |---|---|---|
 |[Test 01](https://github.com/Parker-Wallace/CP2561/tree/master/src/main/java/Tests/T01)|regex, `try catch`, file writing|[README](https://github.com/Parker-Wallace/CP2561/tree/master/src/main/java/Tests/T01/README.md)|
