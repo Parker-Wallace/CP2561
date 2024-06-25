@@ -16,12 +16,12 @@ included in this wiki and adjoining repository
 
 ### Assignments
 
-| Page | Description|
-|---|---|
-|[Assignment 01: Exceptions](https://github.com/Parker-Wallace/CP2561/tree/master/src/main/java/Assignments/A1)|Introduction to exception handling and the `try{...} catch{}...` block|
-|[Assignment 02: Working With Files](https://github.com/Parker-Wallace/CP2561/tree/master/src/main/java/Assignments/A2)|Utilization of `BufferedReader.Writer` and Serialization|
-|[Assignment 03: RegEx](https://github.com/Parker-Wallace/CP2561/tree/master/src/main/java/Assignments/A3)|Working with regular expression and String manipulation|
-|[Assignment 04: Arrays](https://github.com/Parker-Wallace/CP2561/tree/master/src/main/java/Assignments/A4)|utilizing `LinkedList()` and `asList`|
+| Page | Description|ReadME link|
+|---|---|---|
+|[Assignment 01: Exceptions](https://github.com/Parker-Wallace/CP2561/tree/master/src/main/java/Assignments/A1)|Introduction to exception handling and the `try{...} catch{}...` block|[README](https://github.com/Parker-Wallace/CP2561/blob/master/src/main/java/Assignments/A1/README.md)|
+|[Assignment 02: Working With Files](https://github.com/Parker-Wallace/CP2561/tree/master/src/main/java/Assignments/A2)|Utilization of `BufferedReader.Writer` and Serialization|[README](https://github.com/Parker-Wallace/CP2561/blob/master/src/main/java/Assignments/A2/README.md)|
+|[Assignment 03: RegEx](https://github.com/Parker-Wallace/CP2561/tree/master/src/main/java/Assignments/A3)|Working with regular expression and String manipulation|[README](https://github.com/Parker-Wallace/CP2561/blob/master/src/main/java/Assignments/A3/README.md)|
+|[Assignment 04: Arrays](https://github.com/Parker-Wallace/CP2561/tree/master/src/main/java/Assignments/A4)|utilizing `LinkedList()` and `asList`|[README](https://github.com/Parker-Wallace/CP2561/blob/master/src/main/java/Assignments/A4/README.md)|
 
 ### ClassWork
 
