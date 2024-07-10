@@ -7,15 +7,23 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RSSFeedChecker {
+public class RSSFeedChecker implements Runnable{
     private String feedUrl;
 
     public RSSFeedChecker(String feedUrl) {
         this.feedUrl = feedUrl;
     }
 
+    @Override
+    public void run() {
+        // TODO Auto-generated method stub
+        System.out.println("current thread" + Thread.currentThread().getName());
+        checkFeed();
+    }
+
     public void checkFeed() {
         try {
+            @SuppressWarnings("deprecation")
             URL url = new URL(feedUrl);
             //XML Document building
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
@@ -73,4 +81,6 @@ public class RSSFeedChecker {
             return pubDate;
         }
     }
+
+
 }

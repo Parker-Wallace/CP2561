@@ -3,6 +3,9 @@ package Assignments.A5;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 public class Main {
     public static void main(String[] args) {
@@ -20,9 +23,12 @@ public class Main {
                 }
             }
 
+            ScheduledExecutorService executor = Executors.newScheduledThreadPool(feedUrls.size());
+
             for (String feedUrl : feedUrls) {
                 RSSFeedChecker checker = new RSSFeedChecker(feedUrl);
-                checker.checkFeed();
+                executor.scheduleAtFixedRate(checker,0, 10, TimeUnit.SECONDS);
+                // checker.run();
             }
         }
     }
