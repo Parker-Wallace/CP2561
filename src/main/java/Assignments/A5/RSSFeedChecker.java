@@ -16,9 +16,14 @@ public class RSSFeedChecker implements Runnable{
 
     @Override
     public void run() {
-        // TODO Auto-generated method stub
         System.out.println("current thread" + Thread.currentThread().getName());
+        try {
         checkFeed();
+        Thread.sleep(5000);
+        }
+        catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
     }
 
     public void checkFeed() {
@@ -56,6 +61,7 @@ public class RSSFeedChecker implements Runnable{
         } catch (Exception e) {
             e.printStackTrace();
         }
+        
     }
 
     private static class RSSItem {

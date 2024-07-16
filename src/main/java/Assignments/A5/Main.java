@@ -27,9 +27,9 @@ public class Main {
 
             for (String feedUrl : feedUrls) {
                 RSSFeedChecker checker = new RSSFeedChecker(feedUrl);
-                executor.scheduleAtFixedRate(checker,0, 10, TimeUnit.SECONDS);
-                // checker.run();
+                executor.scheduleAtFixedRate(checker,0, 1, TimeUnit.MINUTES);
             }
+            
         }
     }
 }
