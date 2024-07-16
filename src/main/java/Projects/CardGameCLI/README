@@ -1,0 +1,12 @@
+the idea
+server - the dealer
+sends out a port that listens
+can have multiple games (threads) going at the sametime
+sends cards to the client and pays out based on responses
+
+client - the player
+connects to port listener
+can instantiate multiple games
+plays blackjack (hit/stay/bet)
+
+if implementing a GUI render it client side 
