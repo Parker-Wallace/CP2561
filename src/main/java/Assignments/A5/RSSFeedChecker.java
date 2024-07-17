@@ -1,28 +1,42 @@
 package Assignments.A5;
 
-import org.w3c.dom.*;
+import java.net.URL;
+
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+
+/**
+ * Represents a tool to check RSS feeds intended to be executed by a thread
+ */
 public class RSSFeedChecker implements Runnable{
     private String feedUrl;
+    private RSSFeedWriter FeedWriter;
 
-    public RSSFeedChecker(String feedUrl) {
+    /**
+     * Class constructor specifying the URL which provides the XML
+     * 
+     * @param feedUrl the url of the RSS feed which is provided in XML
+     */
+    public RSSFeedChecker(String feedUrl, RSSFeedWriter rssFeedWriter) {
         this.feedUrl = feedUrl;
+        this.FeedWriter = rssFeedWriter;
     }
+    
+    
 
     @Override
     public void run() {
-        System.out.println("current thread" + Thread.currentThread().getName());
         try {
-        checkFeed();
-        Thread.sleep(5000);
-        }
-        catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
+            checkFeed();
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
         }
     }
 
@@ -30,6 +44,7 @@ public class RSSFeedChecker implements Runnable{
         try {
             @SuppressWarnings("deprecation")
             URL url = new URL(feedUrl);
+            System.out.println("check feed() initiated");
             //XML Document building
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             DocumentBuilder builder = factory.newDocumentBuilder();
@@ -37,7 +52,7 @@ public class RSSFeedChecker implements Runnable{
 
             //This is how you work with XML - you do not need to modify this!
             NodeList itemList = doc.getElementsByTagName("item");
-            List<RSSItem> items = new ArrayList<>();
+
 
             for (int i = 0; i < itemList.getLength(); i++) {
                 Node itemNode = itemList.item(i);
@@ -46,47 +61,19 @@ public class RSSFeedChecker implements Runnable{
                     String title = itemElement.getElementsByTagName("title").item(0).getTextContent();
                     String link = itemElement.getElementsByTagName("link").item(0).getTextContent();
                     String pubDate = itemElement.getElementsByTagName("pubDate").item(0).getTextContent();
-                    items.add(new RSSItem(title, link, pubDate));
+                    RSSItem item = new RSSItem(title, link, pubDate);
+                    FeedWriter.addRSSItem(item);
                 }
             }
-
-            System.out.println("Feed: " + feedUrl);
-            for (int i = 0; i < Math.min(3, items.size()); i++) {
-                RSSItem item = items.get(i);
-                System.out.println("Title: " + item.getTitle());
-                System.out.println("Link: " + item.getLink());
-                System.out.println("Published Date: " + item.getPubDate());
-                System.out.println();
-            }
+            
         } catch (Exception e) {
             e.printStackTrace();
         }
         
+        
     }
 
-    private static class RSSItem {
-        private String title;
-        private String link;
-        private String pubDate;
 
-        public RSSItem(String title, String link, String pubDate) {
-            this.title = title;
-            this.link = link;
-            this.pubDate = pubDate;
-        }
-
-        public String getTitle() {
-            return title;
-        }
-
-        public String getLink() {
-            return link;
-        }
-
-        public String getPubDate() {
-            return pubDate;
-        }
-    }
 
 
 }

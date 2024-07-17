@@ -3,18 +3,15 @@ package Assignments.A5;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
 
 public class Main {
     public static void main(String[] args) {
         try (Scanner scanner = new Scanner(System.in)) {
             List<String> feedUrls = new ArrayList<>();
+            RSSFeedWriter writer = new RSSFeedWriter();
             final String end = "done";
-
             String url = "";
-
+            writer.helloworld();
             System.out.println("Enter RSS feed URLs (type 'done' to finish):");
             while (!url.equals(end)) {
                 url = scanner.nextLine();
@@ -23,11 +20,10 @@ public class Main {
                 }
             }
 
-            ScheduledExecutorService executor = Executors.newScheduledThreadPool(feedUrls.size());
 
             for (String feedUrl : feedUrls) {
-                RSSFeedChecker checker = new RSSFeedChecker(feedUrl);
-                executor.scheduleAtFixedRate(checker,0, 1, TimeUnit.MINUTES);
+                Thread feedthread = new Thread(new RSSFeedChecker(feedUrl, writer));
+                feedthread.start();
             }
             
         }
