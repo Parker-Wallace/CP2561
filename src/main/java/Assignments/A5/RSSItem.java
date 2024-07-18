@@ -22,4 +22,19 @@ public class RSSItem {
     public String getPubDate() {
         return pubDate;
     }
+
+    @Override
+    public boolean equals(Object obj){
+        if (obj == null) {
+            return false;
+        }
+        if (obj.getClass() != this.getClass()) {
+            return false;
+        }
+        final RSSItem other = (RSSItem) obj;
+        if (this.getTitle() == null ? other.getTitle() != null : !this.getTitle().equals(other.getTitle())) {
+            return false;
+        }
+        return true;
+    }
 }

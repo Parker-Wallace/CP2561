@@ -36,3 +36,4 @@ In this assignment, you will create a program that checks RSS feeds in the backg
 - https://www.nytimes.com/svc/collections/v1/publish/https://www.nytimes.com/section/world/rss.xml
 - https://defence-blog.com/feed/
 - https://feeds.washingtonpost.com/rss/world
+- https://lorem-rss.herokuapp.com/feed?unit=second&interval=30

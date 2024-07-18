@@ -31,20 +31,20 @@ public class RSSFeedChecker implements Runnable{
 
     @Override
     public void run() {
+        while (true) {
         try {
             checkFeed();
-            Thread.sleep(500);
-        } catch (InterruptedException e) {
+        } catch (Exception e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
+            break;
         }
-    }
+    }}
 
     public void checkFeed() {
         try {
             @SuppressWarnings("deprecation")
             URL url = new URL(feedUrl);
-            System.out.println("check feed() initiated");
             //XML Document building
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             DocumentBuilder builder = factory.newDocumentBuilder();
@@ -54,7 +54,7 @@ public class RSSFeedChecker implements Runnable{
             NodeList itemList = doc.getElementsByTagName("item");
 
 
-            for (int i = 0; i < itemList.getLength(); i++) {
+            for (int i = 0; i < 3; i++) {
                 Node itemNode = itemList.item(i);
                 if (itemNode.getNodeType() == Node.ELEMENT_NODE) {
                     Element itemElement = (Element) itemNode;
