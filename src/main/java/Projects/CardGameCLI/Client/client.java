@@ -12,19 +12,18 @@ class Client {
 			BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream())); 
 			Scanner sc = new Scanner(System.in); 
 			) { 
-				String line;
+				String line = sc.nextLine();
 				
 				while (!"exit".equals((line = sc.nextLine() ))
 				) {
+									// sending the user input to server
+									System.out.println(line); 
+					out.println(line);
+					out.flush();
 					String serverMessage;
-					while ((serverMessage = in.readLine()) != null) {
+					while (!(serverMessage = in.readLine()).equals("waiting")) {
 						System.out.println(serverMessage);
 					}
-					// reading from user
-					line = sc.nextLine(); 
-
-					// sending the user input to server 
-					out.println(line); 
 			} 
 		} 
 		catch (IOException e) { 
