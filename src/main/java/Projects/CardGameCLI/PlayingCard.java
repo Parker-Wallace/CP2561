@@ -71,28 +71,24 @@ public class PlayingCard {
      *
      * @return A string representation of the playing card.
      */
+    @Override
     public String toString() {
         String value;
         String face = "";
-        if (this.value == 1) {
-            value = "A";
-        } else if (this.value == 11) {
-            value = "J";
-        } else if (this.value == 12) {
-            value = "Q";
-        } else if (this.value == 13) {
-            value = "K";
-        } else {
-            value = String.valueOf(this.value);
-        }
-        if (this.suit == Suit.DIAMONDS) {
-            face = "♦";
-        } else if (this.suit == Suit.HEARTS) {
-            face = "♥";
-        } else if (this.suit == Suit.CLUBS) {
-            face = "♣";
-        } else if (this.suit == Suit.SPADES) {
-            face = "♠";
+        value = switch (this.value) {
+            case 1 -> "A";
+            case 11 -> "J";
+            case 12 -> "Q";
+            case 13 -> "K";
+            default -> String.valueOf(this.value);
+        };
+        if (null != this.suit) switch (this.suit) {
+            case DIAMONDS -> face = "♦";
+            case HEARTS -> face = "♥";
+            case CLUBS -> face = "♣";
+            case SPADES -> face = "♠";
+            default -> {
+            }
         }
         return String.format("%s%s", value, face);
     }

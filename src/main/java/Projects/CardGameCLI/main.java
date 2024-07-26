@@ -2,8 +2,6 @@ package Projects.CardGameCLI;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
 
 public class main {
     public static void main(String[] args) {
@@ -13,9 +11,10 @@ public class main {
         for (int i = 0; i < 3; i++) {
             int userBet = user.bet(20);
             BlackJack game = new BlackJack(
-                new ArrayList<PlayingCard>(Arrays.asList(dealer.deal(), dealer.deal())),
-                new ArrayList<PlayingCard>(Arrays.asList(dealer.deal(), dealer.deal())),
+                new ArrayList<>(Arrays.asList(dealer.deal(), dealer.deal())),
+                new ArrayList<>(Arrays.asList(dealer.deal(), dealer.deal())),
                 userBet);
+                System.out.println(game.playerhand.getScore());
                 while (game.gameState != false) {
                     System.out.println("starting game " + i);  // Continue while the game is ongoing
                     // Player's turn
