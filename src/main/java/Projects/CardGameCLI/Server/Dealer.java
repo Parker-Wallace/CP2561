@@ -1,11 +1,13 @@
 package Projects.CardGameCLI.Server;
 
 
-import java.io.BufferedReader;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
+
+import org.json.simple.*;
 
 import Projects.CardGameCLI.Hand;
 import Projects.CardGameCLI.Shoe;
@@ -21,17 +23,22 @@ public class Dealer implements Runnable {
         this.shoe = new Shoe(6);
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public void run() {
-         try (BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-            PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true)) {
-                System.out.println("Connected");
-            String request = in.readLine();
-            while (request != null) {
-                handleRequest(request, out);
-            }
+         try (
+            DataInputStream in = new DataInputStream(clientSocket.getInputStream());
+            DataOutputStream out = new DataOutputStream(clientSocket.getOutputStream());
+            ) {
+                JSONObject outputObject = new JSONObject();
+                outputObject.put("message", "Welcome to blackjack...\nPlace ypu bets...");
+                out.writeUTF(outputObject.toJSONString());
+                while (true) {
+                    String userInputJsonString = in.readUTF();
+                    JSONObject inpuObject = new JSONObject();
+                    out.writeUTF(userInputJsonString);
+                }
         } catch (IOException e) {
-            e.printStackTrace();
         }
         
     }

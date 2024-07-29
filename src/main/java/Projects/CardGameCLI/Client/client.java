@@ -3,27 +3,37 @@ import java.io.*;
 import java.net.*; 
 import java.util.*; 
 
+import org.json.simple.JSONObject;
+
 
 class Client { 
+	@SuppressWarnings("unchecked")
 	public static void main(String[] args) 
 	{
-		try (Socket socket = new Socket("localhost", 1234);
-			PrintWriter out = new PrintWriter(socket.getOutputStream(), true); 
-			BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream())); 
-			Scanner sc = new Scanner(System.in); 
-			) { 
-				String line = sc.nextLine();
-				
-				while (!"exit".equals((line = sc.nextLine() ))
-				) {
-									// sending the user input to server
-									System.out.println(line); 
-					out.println(line);
-					out.flush();
-					String serverMessage;
-					while (!(serverMessage = in.readLine()).equals("waiting")) {
-						System.out.println(serverMessage);
-					}
+		try (
+			Socket socket = new Socket("localhost", 1234);
+            DataOutputStream out = new DataOutputStream(socket.getOutputStream());
+            DataInputStream in = new DataInputStream(socket.getInputStream());
+            Scanner scanner = new Scanner(System.in);
+			) {
+				System.out.println(in.readUTF());
+				while (true) {
+				System.out.print("Enter command (or 'exit' to quit): ");
+                String command = scanner.nextLine();
+
+                if ("exit".equalsIgnoreCase(command)) {
+                    break;
+                }
+				JSONObject jsonObject = new JSONObject();
+                jsonObject.put("message", command);
+
+                // Send the JSON object to the server
+                out.writeUTF(jsonObject.toString());
+
+                // Receive and print the response from the server
+                String response = in.readUTF();
+                System.out.println(response);
+		
 			} 
 		} 
 		catch (IOException e) { 
