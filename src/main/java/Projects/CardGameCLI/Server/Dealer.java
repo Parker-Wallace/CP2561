@@ -3,13 +3,16 @@ package Projects.CardGameCLI.Server;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
-import java.io.IOException;
-import java.io.PrintWriter;
 import java.net.Socket;
+import java.util.ArrayList;
+import java.util.List;
 
-import org.json.simple.*;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 import Projects.CardGameCLI.Hand;
+import Projects.CardGameCLI.Server.Dealer.gamestates;
 import Projects.CardGameCLI.Shoe;
 
 
@@ -31,33 +34,77 @@ public class Dealer implements Runnable {
             DataOutputStream out = new DataOutputStream(clientSocket.getOutputStream());
             ) {
                 JSONObject outputObject = new JSONObject();
-                outputObject.put("message", "Welcome to blackjack...\nPlace ypu bets...");
-                out.writeUTF(outputObject.toJSONString());
+                JSONParser parser = new JSONParser();
+                List<String> options = new ArrayList<String>();
+                gamestates currentState = gamestates.START;
+
+                outputObject.put("message", "Place your bet");
+
                 while (true) {
-                    String userInputJsonString = in.readUTF();
-                    JSONObject inpuObject = new JSONObject();
-                    out.writeUTF(userInputJsonString);
-                }
-        } catch (IOException e) {
+                    outputObject.put("options", CommandList(currentState, options));
+                    out.writeUTF(outputObject.toJSONString());
+                    String clientCommand = in.readUTF();
+                    handleRequest(clientCommand, parser, outputObject);
+                    }
+        } catch (Exception e) {
         }
         
     }
 
-    private void handleRequest(String request, PrintWriter out) {
+    private JSONObject handleRequest(String command, JSONParser parser, JSONObject outputObject) throws ParseException {
+        JSONObject commandAsJsonObject = (JSONObject) parser.parse(command);
+        outputObject.clear();
+        String request = (String) commandAsJsonObject.get("command");
         switch (request) {
-            case "DRAW_CARD":
+            case "bet":
+            outputObject.put("message", "you made a bet!");
+            // process the bet and deal cards
+                break;
+            case "hit":
+                // deal an extra card and check gamestate
+                break;
+            case "stay":
+                // swict gamestate to dealer and play, then check winner
                 break;
             default:
-                out.println("sorry i didnt quit understand " + request);
+                outputObject.put("message", "sorry i didnt quit understand " + "\"" + request + "\"");
         }
-        out.println("waiting");
+        return outputObject;
     }
 
-    private void giveChips() {
-
+    enum gamestates {
+        START,
+        INPLAY,
+        DEALER,
+        END
     }
 
     public boolean willHit(Hand hand) {
         return hand.getScore() < 17;
     }
+
+    public List<String> CommandList(gamestates currentState, List<String> optionsArray) {
+        optionsArray.clear();
+        if (currentState == gamestates.START) {
+            optionsArray.add("Bet");
+        }
+        else if (currentState == gamestates.INPLAY) {
+            optionsArray.add("Hit");
+            optionsArray.add("Stand");
+        }
+        optionsArray.add("Exit");
+        return optionsArray;
+    }
 }
+
+
+// flow
+// send hello
+// give options
+// recieve bet
+// deal cards
+// give options
+// handle options
+// skip if bust, play if stand
+// issue c"winnings"
+// play agaian

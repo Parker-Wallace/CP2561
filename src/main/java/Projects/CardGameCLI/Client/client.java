@@ -1,43 +1,124 @@
 package Projects.CardGameCLI.Client;
-import java.io.*; 
-import java.net.*; 
-import java.util.*; 
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException; 
+import java.net.Socket;
+import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
 
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 
-class Client { 
+class Client {
 	@SuppressWarnings("unchecked")
-	public static void main(String[] args) 
+	public static void main(String[] args)
 	{
+		int chips = 100;
+		
 		try (
 			Socket socket = new Socket("localhost", 1234);
             DataOutputStream out = new DataOutputStream(socket.getOutputStream());
             DataInputStream in = new DataInputStream(socket.getInputStream());
             Scanner scanner = new Scanner(System.in);
 			) {
-				System.out.println(in.readUTF());
-				while (true) {
-				System.out.print("Enter command (or 'exit' to quit): ");
-                String command = scanner.nextLine();
+				clearConsole();
 
+				System.out.println("*******************\nWELCOME TO BLACKJACK\n**************");
+				TimeUnit.SECONDS.sleep(2);
+
+				JSONParser parser = new JSONParser();
+				JSONObject jsonObject = new JSONObject();
+				
+				while (true) {
+				clearConsole();
+
+				
+				System.out.println("**********************\nChips Available: " + chips + "$\n************************");
+				String inboundMessage = in.readUTF();
+				readCommand(inboundMessage, parser);
+				if (chips == 0) {
+					System.out.println("looks like youre out of money...\n come back when you have more");
+					System.exit(1);
+				}
+				System.out.println("**************************");
+				readOptions(inboundMessage, parser);
+				System.out.print("Enter command: ");
+                String command = scanner.nextLine().trim();
                 if ("exit".equalsIgnoreCase(command)) {
                     break;
                 }
-				JSONObject jsonObject = new JSONObject();
-                jsonObject.put("message", command);
+				if ("bet".equalsIgnoreCase(command)) {
+					
+						while (true) { 
+							System.out.println("how much would you like to bet?");
+							int betAmount = -1;
+							if (scanner.hasNextInt()) {
+								betAmount = scanner.nextInt();
+								scanner.nextLine(); // Consume the newline character left after nextInt()
+							} else {
+								System.out.println("Please enter a valid number.");
+								scanner.next(); // Clear invalid input
+							}
+							
+							if (betAmount < 0 || betAmount > chips) {
+								System.out.println("You don't have enough chips to make that kind of bet.");
+							} else {
+								chips -= betAmount;
+								jsonObject.put("bet", betAmount);
+								break;
+							}
+					}
+				}
+                jsonObject.put("command", command);
 
                 // Send the JSON object to the server
                 out.writeUTF(jsonObject.toString());
 
                 // Receive and print the response from the server
-                String response = in.readUTF();
-                System.out.println(response);
-		
+                
+                //System.out.println(jsonResponse.get("message"));
+
 			} 
 		} 
-		catch (IOException e) { 
+		catch (Exception e) { 
 			e.printStackTrace(); 
 		} 
-	} 
+	}
+
+
+	private static void readCommand(String inboundString, JSONParser parser) throws IOException, ParseException {
+
+		JSONObject responseAsJSONObject = (JSONObject) parser.parse(inboundString);
+		
+		System.out.println(responseAsJSONObject.get("message"));
+	}
+
+	private static void readOptions(String inboundString, JSONParser parser) throws IOException, ParseException {
+		JSONObject responseAsJSONObject = (JSONObject) parser.parse(inboundString);
+		JSONArray optionsArray = (JSONArray) responseAsJSONObject.get("options");
+        for (Object option : optionsArray) {
+            System.out.println(option);
+        }
+
+        // Print the ArrayList to verify the contents
+        
+    }
+
+	public static void clearConsole() {
+		System.out.print("\033[H\033[2J");
+		System.out.flush();
+	}
 }
+
+
+// flow of play
+//hello
+//loop
+//place bet
+//get card
+//hit, stand
+// bust , dealer turn 
+// determine winner
