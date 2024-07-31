@@ -83,10 +83,10 @@ public class PlayingCard {
             default -> String.valueOf(this.value);
         };
         if (null != this.suit) switch (this.suit) {
-            case DIAMONDS -> face = "♦";
-            case HEARTS -> face = "♥";
-            case CLUBS -> face = "♣";
-            case SPADES -> face = "♠";
+            case DIAMONDS -> face = "\u2666";
+            case HEARTS -> face = "\u2665";
+            case CLUBS -> face = "\u2663";
+            case SPADES -> face = "\u2660";
             default -> {
             }
         }
