@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 
 public class Hand {
-    private ArrayList<PlayingCard> cards;
+    public ArrayList<PlayingCard> cards;
 
     public Hand(ArrayList<PlayingCard> cards) {
         this.cards = cards;
@@ -31,4 +31,15 @@ public class Hand {
         }
         return score;
     }
+
+    @Override
+    public String toString() {
+        StringBuilder cardsasString = new StringBuilder();
+        for (PlayingCard card : this.cards) {
+            cardsasString.append(card.toString());
+        }
+        return cardsasString.toString();
+    }
 }
+
+
