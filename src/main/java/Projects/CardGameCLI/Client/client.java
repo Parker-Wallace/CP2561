@@ -11,6 +11,8 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+import Projects.CardGameCLI.Client.Client.gamestates;
+
 
 class Client {
 	@SuppressWarnings("unchecked")
@@ -24,20 +26,17 @@ class Client {
             DataInputStream in = new DataInputStream(socket.getInputStream());
             Scanner scanner = new Scanner(System.in);
 			) {
+				gamestates action = gamestates.START;
 				clearConsole();
-
-				System.out.println("*******************\nWELCOME TO BLACKJACK\n**************");
-				TimeUnit.SECONDS.sleep(2);
-
+				GUI.GAMEWelcome();
+				TimeUnit.SECONDS.sleep(1);
 				JSONParser parser = new JSONParser();
 				JSONObject jsonObject = new JSONObject();
-				
 				while (true) {
-				clearConsole();
-
-				
-				System.out.println("**********************\nChips Available: " + chips + "$\n************************");
-				String inboundMessage = in.readUTF();
+					clearConsole();
+					System.out.println(action);
+					System.out.println("**********************\nChips Available: " + chips + "$\n************************");
+					String inboundMessage = in.readUTF();
 				readCommand(inboundMessage, parser);
 				if (chips == 0) {
 					System.out.println("looks like youre out of money...\n come back when you have more");
@@ -51,7 +50,7 @@ class Client {
                     break;
                 }
 				if ("bet".equalsIgnoreCase(command)) {
-					
+					action = gamestates.INPLAY;
 						while (true) { 
 							System.out.println("how much would you like to bet?");
 							int betAmount = -1;
@@ -67,16 +66,17 @@ class Client {
 								System.out.println("You don't have enough chips to make that kind of bet.");
 							} else {
 								chips -= betAmount;
-								jsonObject.put("bet", betAmount);
+								jsonObject.put("pot", betAmount);
 								break;
 							}
 					}
 				}
+
                 jsonObject.put("command", command);
 
                 // Send the JSON object to the server
                 out.writeUTF(jsonObject.toString());
-
+				
                 // Receive and print the response from the server
                 
                 //System.out.println(jsonResponse.get("message"));
@@ -90,9 +90,7 @@ class Client {
 
 
 	private static void readCommand(String inboundString, JSONParser parser) throws IOException, ParseException {
-
 		JSONObject responseAsJSONObject = (JSONObject) parser.parse(inboundString);
-		
 		System.out.println(responseAsJSONObject.get("message"));
 	}
 
@@ -107,10 +105,26 @@ class Client {
         
     }
 
+	private static void getWinnings(String inboundString, JSONParser parser) throws IOException, ParseException {
+		JSONObject responseAsJSONObject = (JSONObject) parser.parse(inboundString);
+		JSONArray optionsArray = (JSONArray) responseAsJSONObject.get("options");
+     
+        }
+
+    
+    
+
 	public static void clearConsole() {
 		System.out.print("\033[H\033[2J");
 		System.out.flush();
 	}
+
+	public enum gamestates {
+        START,
+        INPLAY,
+        DEALER,
+        END
+    }
 }
 
 
