@@ -24,7 +24,7 @@ public class BlackJack {
     }
 
     public Hand checkWinner() {
-        if (this.playerhand.getScore() > this.dealerHand.getScore() && this.playerhand.getScore() < 22) {
+        if (this.playerhand.getScore() > this.dealerHand.getScore() && this.playerhand.getScore() < 22 || this.dealerHand.getScore() > 21) {
             return this.playerhand;
         }
         else return this.dealerHand;
