@@ -80,3 +80,9 @@ Blackjack object concepts
 - **dealer** deals **hands** to **dealer** and **player**
 - **player** can *hit* and *stay*
 
+json to pass
+
+message
+cards
+pot
+status
