@@ -11,9 +11,6 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-import Projects.CardGameCLI.Client.Client.gamestates;
-
-
 class Client {
 	@SuppressWarnings("unchecked")
 	public static void main(String[] args)
@@ -33,10 +30,11 @@ class Client {
 				JSONParser parser = new JSONParser();
 				JSONObject jsonObject = new JSONObject();
 				while (true) {
+					String inboundMessage = in.readUTF();
+					chips += getWinnings(inboundMessage, parser);
 					clearConsole();
 					System.out.println(action);
 					System.out.println("**********************\nChips Available: " + chips + "$\n************************");
-					String inboundMessage = in.readUTF();
 				readCommand(inboundMessage, parser);
 				if (chips == 0) {
 					System.out.println("looks like youre out of money...\n come back when you have more");
@@ -105,10 +103,17 @@ class Client {
         
     }
 
-	private static void getWinnings(String inboundString, JSONParser parser) throws IOException, ParseException {
+	private static int getWinnings(String inboundString, JSONParser parser) throws IOException, ParseException {
 		JSONObject responseAsJSONObject = (JSONObject) parser.parse(inboundString);
-		JSONArray optionsArray = (JSONArray) responseAsJSONObject.get("options");
-     
+		try {
+			int userbet = ((Number) responseAsJSONObject.get("pot")).intValue();
+		if ( userbet != 0) {
+			return userbet;
+		}
+		else return 0;
+		} catch (Exception e) {
+		}
+		return 0;
         }
 
     
