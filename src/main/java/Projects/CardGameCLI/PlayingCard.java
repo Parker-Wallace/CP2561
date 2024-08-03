@@ -3,7 +3,7 @@ package Projects.CardGameCLI;
 
 /**
  * represents a common playing card.
- * each card has a specified value and belongs to one of the four suits
+ * Each card has a specified value and belongs to one of the four suits
  * 
  * @author parker.wallace
  */
