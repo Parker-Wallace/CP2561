@@ -14,11 +14,16 @@ import org.json.simple.parser.ParseException;
 import Projects.CardGameCLI.Client.GUI.GUI;
 
 class Client {
+	private int chips;
+
+	public Client () {
+		this.chips = 100;
+	}
+
 	@SuppressWarnings("unchecked")
 	public static void main(String[] args)
 	{
-		int chips = 100;
-		
+		Client client = new Client();
 		try (
 			Socket socket = new Socket("localhost", 1234);
             DataOutputStream out = new DataOutputStream(socket.getOutputStream());
@@ -66,10 +71,10 @@ class Client {
 								scanner.next(); // Clear invalid input
 							}
 							
-							if (betAmount < 0 || betAmount > chips) {
+							if (betAmount < 0 || betAmount > client.chips) {
 								System.out.println("You don't have enough chips to make that kind of bet.");
 							} else {
-								chips -= betAmount;
+								client.chips -= betAmount;
 								jsonObject.put("pot", betAmount);
 								break;
 							}
