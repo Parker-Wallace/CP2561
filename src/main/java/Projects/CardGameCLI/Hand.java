@@ -59,6 +59,51 @@ public class Hand {
         }
         return cardsasString.toString();
     }
+
+    public void printCards() {
+
+
+        // Iterate over each card and build the lines
+        String[] cardLines = new String[7];
+        for (int i = 0; i < 7; i++) {
+            StringBuilder lineBuilder = new StringBuilder();
+            for (PlayingCard card : this.cards) {
+            String value;
+            String face = "";
+            value = switch (card.value) {
+                case 1 -> "A";
+                case 11 -> "J";
+                case 12 -> "Q";
+                case 13 -> "K";
+                default -> String.valueOf(card.value);
+            };
+            if (null != card.suit) switch (card.suit) {
+                case DIAMONDS -> face = "^";
+                case HEARTS -> face = "&";
+                case CLUBS -> face = "v";
+                case SPADES -> face = "o";
+                default -> {
+                }
+            }
+                String[] lines = new String[7];
+                lines[0] = "┌─────────┐";
+                lines[1] = String.format("│ %-2s      │", value);
+                lines[2] = "│         │";
+                lines[3] = String.format("│    %s    │", face);
+                lines[4] = "│         │";
+                lines[5] = String.format("│      %-2s │", value);
+                lines[6] = "└─────────┘";
+
+                lineBuilder.append(lines[i]).append(" ");
+                cardLines[i] = lineBuilder.toString();
+            }
+        }
+
+        // Print each line
+        for (String line : cardLines) {
+            System.out.println(line);
+        }
+    }
 }
 
 
