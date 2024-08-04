@@ -93,4 +93,36 @@ public class PlayingCard {
         return String.format("%s%s", value, face);
     }
 
+    public String generateAsciiCard() {
+        String value;
+        String face = "";
+        value = switch (this.value) {
+            case 1 -> "A";
+            case 11 -> "J";
+            case 12 -> "Q";
+            case 13 -> "K";
+            default -> String.valueOf(this.value);
+        };
+        if (null != this.suit) switch (this.suit) {
+            case DIAMONDS -> face = "^";
+            case HEARTS -> face = "&";
+            case CLUBS -> face = "v";
+            case SPADES -> face = "o";
+            default -> {
+            }
+        }
+        String topBottom = "┌─────────┐\n";
+        String middle = "│         │\n";
+        String rankLine = String.format("│ %-2s      │\n", value);
+        String suitLine = String.format("│    %s    │\n", face);
+        String rankLineBottom = String.format("│      %-2s │\n", value);
+
+        return topBottom +
+               rankLine +
+               middle +
+               suitLine +
+               middle +
+               rankLineBottom +
+               topBottom.replace('┌', '└').replace('┐', '┘');
+    }
 }
