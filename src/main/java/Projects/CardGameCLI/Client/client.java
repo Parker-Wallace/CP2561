@@ -44,14 +44,20 @@ class Client {
 					}
 					
 					GUI.clearConsole();
-	
-					System.out.println("**********************\nChips Available: " + chips + "$\n************************");
-				readCommand(inboundMessage, parser);
-		
-				System.out.println("**************************");
-				readOptions(inboundMessage, parser);
-				System.out.print("Enter command: ");
-                String command = scanner.nextLine().trim();
+					handleObject(inboundObject, client);
+
+					String command;
+					while (true) {
+						System.out.print("Enter command: ");
+						command = scanner.nextLine().trim();
+						if (!checkCommand(getOptions(inboundObject), command)) {
+							System.out.println("command " + command + " not accepted please try again");
+						}
+						else {
+							break;
+						}
+						
+					}
                 if ("exit".equalsIgnoreCase(command)) {
                     break;
                 }
