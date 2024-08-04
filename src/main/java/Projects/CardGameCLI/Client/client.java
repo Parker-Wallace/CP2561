@@ -97,10 +97,15 @@ class Client {
 		} 
 	}
 
-
-	private static void readCommand(String inboundString, JSONParser parser) throws IOException, ParseException {
-		JSONObject responseAsJSONObject = (JSONObject) parser.parse(inboundString);
-		System.out.println(responseAsJSONObject.get("message"));
+	private static Boolean checkCommand(JSONArray options, String command) {
+		boolean found = false;
+        for (Object option : options) {
+            if (option.toString().equalsIgnoreCase(command)) {
+                found = true;
+                break;
+            }
+        }
+		return found;
 	}
 
 	private static JSONArray getOptions(JSONObject inboundObject) throws IOException, ParseException {
