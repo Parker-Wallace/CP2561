@@ -39,15 +39,12 @@ public class Dealer implements Runnable {
             DataInputStream in = new DataInputStream(clientSocket.getInputStream());
             DataOutputStream out = new DataOutputStream(clientSocket.getOutputStream());
             ) {
-                JSONObject outputObject = creategamePackage();
                 JSONParser parser = new JSONParser();
-                List<String> options = new ArrayList<String>();
-
-                outputObject.put("message", "Place your bet");
-
+                JSONObject outputObject = new JSONObject();
+                outputObject.put("options", CommandList(this.action));
                 while (true) {
-                    outputObject.put("options", CommandList(this.action, (List<String>) outputObject.get("options")));
                     out.writeUTF(outputObject.toJSONString());
+                    outputObject = new JSONObject();
                     String clientCommand = in.readUTF();
                     handleRequest(clientCommand, parser, outputObject);
     
@@ -60,7 +57,7 @@ public class Dealer implements Runnable {
     @SuppressWarnings("unchecked")
     private void handleRequest(String command, JSONParser parser, JSONObject outputObject) throws ParseException {
         JSONObject commandAsJsonObject = (JSONObject) parser.parse(command);
-        String request = (String) commandAsJsonObject.get("command");
+        String request = ((String) commandAsJsonObject.get("command")).trim().toLowerCase();
         int userbet = ((Number) commandAsJsonObject.get("pot")).intValue();
         switch (request) {
             case "bet" -> {
@@ -72,7 +69,7 @@ public class Dealer implements Runnable {
             case "hit" -> {
                 game.hit(deal(), game.playerhand);
                 if (game.gameState == false) {
-                    outputObject.put("message","that there is a bust");
+                    outputObject.put("status", "bust");
                     this.action = gamestates.END;
                 } else {
                     outputObject.put("message", game.dealerHand.cards.get(0).toString() + "\n" + game.playerhand.toString());
@@ -93,9 +90,9 @@ public class Dealer implements Runnable {
                 // swict gamestate to dealer and play, then check winner
             }
             default -> {
-                outputObject.remove("winnings");
                 outputObject.put("message", "sorry i didnt quit understand " + "\"" + request + "\"" + '\n' + outputObject.get("message"));}
         }
+        outputObject.put("options", CommandList(this.action));
     }
 
     public enum gamestates {
@@ -109,17 +106,17 @@ public class Dealer implements Runnable {
         return hand.getScore() < 17;
     }
 
-    public List<String> CommandList(gamestates currentState, List<String> optionsArray) {
-        optionsArray.clear();
+    public List<String> CommandList(gamestates currentState) {
+        List<String> options = new ArrayList<String>();
         if (currentState == gamestates.START || currentState == gamestates.END) {
-            optionsArray.add("Bet");
+            options.add("Bet");
         }
         else if (currentState == gamestates.INPLAY) {
-            optionsArray.add("Hit");
-            optionsArray.add("stay");
+            options.add("Hit");
+            options.add("stay");
         }
-        optionsArray.add("Exit");
-        return optionsArray;
+        options.add("Exit");
+        return options;
     }
 
     
