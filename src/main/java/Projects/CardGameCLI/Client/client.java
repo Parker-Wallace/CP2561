@@ -39,9 +39,7 @@ class Client {
 					String inboundMessage = in.readUTF();
 					JSONObject inboundObject = (JSONObject) parser.parse(inboundMessage);
 
-					if (inboundObject.containsKey("winnings")) {
-						chips += ((Number) inboundObject.get("winnings")).intValue();
-					}
+					
 					
 					GUI.clearConsole();
 					handleObject(inboundObject, client);
@@ -62,7 +60,7 @@ class Client {
                     break;
                 }
 				if ("bet".equalsIgnoreCase(command)) {		
-					if (chips == 0) {
+					if (client.chips == 0) {
 					System.out.println("looks like youre out of money...\n come back when you have more");
 					System.exit(1);
 				}
