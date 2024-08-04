@@ -15,7 +15,6 @@ import org.json.simple.parser.ParseException;
 import Projects.CardGameCLI.BlackJack;
 import Projects.CardGameCLI.Hand;
 import Projects.CardGameCLI.PlayingCard;
-import Projects.CardGameCLI.Server.Dealer.gamestates;
 import Projects.CardGameCLI.Shoe;
 
 
@@ -61,14 +60,12 @@ public class Dealer implements Runnable {
     @SuppressWarnings("unchecked")
     private void handleRequest(String command, JSONParser parser, JSONObject outputObject) throws ParseException {
         JSONObject commandAsJsonObject = (JSONObject) parser.parse(command);
-        // outputObject.clear();
         String request = (String) commandAsJsonObject.get("command");
         int userbet = ((Number) commandAsJsonObject.get("pot")).intValue();
         switch (request) {
             case "bet" -> {
                 this.game = new BlackJack(new ArrayList<>(Arrays.asList(deal(), deal())), new ArrayList<>(Arrays.asList(deal(), deal())), userbet );
                 outputObject.put("message", game.dealerHand.cards.get(0).toString() + '\n' + game.playerhand.toString());
-                outputObject.put("pot", 0);
                 this.action = gamestates.INPLAY;
                 // process the bet and deal cards
             }
@@ -88,15 +85,16 @@ public class Dealer implements Runnable {
                 }
                 if (game.checkWinner() == game.playerhand) {
                     outputObject.put("message", game.dealerHand.toString() + '\n' + game.playerhand.toString() + '\n' + "player wins");
-                    outputObject.put("pot", userbet * 2);
+                    outputObject.put("winnings", userbet * 2);
                 } else {
                     outputObject.put("message", game.dealerHand.toString() + '\n' + game.playerhand.toString() + '\n' + "house wins");
-                    outputObject.put("pot", 0);
                 }
                 this.action = gamestates.END;
                 // swict gamestate to dealer and play, then check winner
             }
-            default -> outputObject.put("message", "sorry i didnt quit understand " + "\"" + request + "\"" + '\n' + outputObject.get("message"));
+            default -> {
+                outputObject.remove("winnings");
+                outputObject.put("message", "sorry i didnt quit understand " + "\"" + request + "\"" + '\n' + outputObject.get("message"));}
         }
     }
 
