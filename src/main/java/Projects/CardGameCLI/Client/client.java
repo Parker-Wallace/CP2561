@@ -11,6 +11,8 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+import Projects.CardGameCLI.Client.GUI.GUI;
+
 class Client {
 	@SuppressWarnings("unchecked")
 	public static void main(String[] args)
