@@ -103,12 +103,9 @@ class Client {
 		System.out.println(responseAsJSONObject.get("message"));
 	}
 
-	private static void readOptions(String inboundString, JSONParser parser) throws IOException, ParseException {
-		JSONObject responseAsJSONObject = (JSONObject) parser.parse(inboundString);
-		JSONArray optionsArray = (JSONArray) responseAsJSONObject.get("options");
-        for (Object option : optionsArray) {
-            System.out.println(option);
-        }
+	private static JSONArray getOptions(JSONObject inboundObject) throws IOException, ParseException {
+		return (JSONArray) inboundObject.get("options");
+
 
         // Print the ArrayList to verify the contents
         
