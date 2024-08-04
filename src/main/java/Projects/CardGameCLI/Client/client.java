@@ -23,23 +23,24 @@ class Client {
             DataInputStream in = new DataInputStream(socket.getInputStream());
             Scanner scanner = new Scanner(System.in);
 			) {
-				gamestates action = gamestates.START;
-				clearConsole();
 				GUI.GAMEWelcome();
 				TimeUnit.SECONDS.sleep(1);
 				JSONParser parser = new JSONParser();
 				JSONObject jsonObject = new JSONObject();
 				while (true) {
+
 					String inboundMessage = in.readUTF();
-					chips += getWinnings(inboundMessage, parser);
-					clearConsole();
-					System.out.println(action);
+					JSONObject inboundObject = (JSONObject) parser.parse(inboundMessage);
+
+					if (inboundObject.containsKey("winnings")) {
+						chips += ((Number) inboundObject.get("winnings")).intValue();
+					}
+					
+					GUI.clearConsole();
+	
 					System.out.println("**********************\nChips Available: " + chips + "$\n************************");
 				readCommand(inboundMessage, parser);
-				if (chips == 0) {
-					System.out.println("looks like youre out of money...\n come back when you have more");
-					System.exit(1);
-				}
+		
 				System.out.println("**************************");
 				readOptions(inboundMessage, parser);
 				System.out.print("Enter command: ");
@@ -47,8 +48,11 @@ class Client {
                 if ("exit".equalsIgnoreCase(command)) {
                     break;
                 }
-				if ("bet".equalsIgnoreCase(command)) {
-					action = gamestates.INPLAY;
+				if ("bet".equalsIgnoreCase(command)) {		
+					if (chips == 0) {
+					System.out.println("looks like youre out of money...\n come back when you have more");
+					System.exit(1);
+				}
 						while (true) { 
 							System.out.println("how much would you like to bet?");
 							int betAmount = -1;
@@ -103,33 +107,6 @@ class Client {
         
     }
 
-	private static int getWinnings(String inboundString, JSONParser parser) throws IOException, ParseException {
-		JSONObject responseAsJSONObject = (JSONObject) parser.parse(inboundString);
-		try {
-			int userbet = ((Number) responseAsJSONObject.get("pot")).intValue();
-		if ( userbet != 0) {
-			return userbet;
-		}
-		else return 0;
-		} catch (Exception e) {
-		}
-		return 0;
-        }
-
-    
-    
-
-	public static void clearConsole() {
-		System.out.print("\033[H\033[2J");
-		System.out.flush();
-	}
-
-	public enum gamestates {
-        START,
-        INPLAY,
-        DEALER,
-        END
-    }
 }
 
 
