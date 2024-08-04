@@ -114,6 +114,33 @@ class Client {
         
     }
 
+	private static void handleObject(JSONObject inboundObject, Client client) throws IOException, ParseException {
+		if (inboundObject.containsKey("status")) {
+			if (inboundObject.get("status").equals("bust")) {
+				GUI.PRINTBUST();
+				GUI.clearConsole();
+			}
+			
+		}
+		if (inboundObject.containsKey("winnings")) {
+			client.chips += ((Number) inboundObject.get("winnings")).intValue();
+		}
+		GUI.printChips(client.chips);
+		if (inboundObject.containsKey("message")) {
+			System.out.println(inboundObject.get("message"));
+			System.out.println("**************************");
+		}
+		if (inboundObject.containsKey("cards")) {
+			
+		}
+		if (inboundObject.containsKey("options")) {
+			for (Object option : getOptions(inboundObject)) {
+				System.out.println(option);
+			}
+		}
+
+	}
+	
 }
 
 
