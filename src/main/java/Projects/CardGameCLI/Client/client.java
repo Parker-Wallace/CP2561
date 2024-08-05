@@ -137,7 +137,9 @@ class Client {
 			System.out.println("**************************");
 		}
 		if (inboundObject.containsKey("cards")) {
-			
+			GUI.printCards((String) inboundObject.get("dealercards"));
+			GUI.printCards((String) inboundObject.get("cards"));
+			System.out.println("**************************");
 		}
 		if (inboundObject.containsKey("options")) {
 			for (Object option : getOptions(inboundObject)) {
