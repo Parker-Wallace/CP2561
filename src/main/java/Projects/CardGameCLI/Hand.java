@@ -40,7 +40,7 @@ public class Hand {
             if (card.getValue() > 10) {
                 score += 10;
             }
-            else if (card.getValue() == 1 && score <= 10) {
+            else if (card.getValue() == 1 && score + 11 <= 21) {
                 score += 11;
             }
             else {
