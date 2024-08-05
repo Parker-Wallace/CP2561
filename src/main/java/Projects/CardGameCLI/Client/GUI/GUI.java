@@ -5,8 +5,6 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
 
-import org.json.simple.JSONArray;
-
 public class GUI {
     final public static void GAMEHEADER() {}
 
@@ -57,8 +55,46 @@ public class GUI {
             System.out.println(line);
         }
     }
+    private static String[] getcards(String cards) {        
+        int len = cards.length();
+        String[] result = new String[(len + 1) / 2];
+        for (int i = 0; i < len; i += 2) {
+            if (i + 2 <= len) {
+                result[i / 2] = cards.substring(i, i + 2);
+            } else {
+                result[i / 2] = cards.substring(i);
+            }
+        }
+        return result;}
 
-    public static void printHand() {}
+    public static void printCards(String cards) {
+        String[] cardsList = getcards(cards);
+        String[] cardLines = new String[7];
+
+        for (int i = 0; i < 7; i++) {
+            StringBuilder lineBuilder = new StringBuilder();
+            for (String card : cardsList) {
+            char value = card.charAt(0);
+            char face = card.charAt(1);
+                String[] lines = new String[7];
+                lines[0] = "┌─────────┐";
+                lines[1] = String.format("│ %-2s      │", value);
+                lines[2] = "│         │";
+                lines[3] = String.format("│    %s    │", face);
+                lines[4] = "│         │";
+                lines[5] = String.format("│      %-2s │", value);
+                lines[6] = "└─────────┘";
+
+                lineBuilder.append(lines[i]).append("");
+                cardLines[i] = lineBuilder.toString();
+            }
+        }
+
+        // Print each line
+        for (String line : cardLines) {
+            System.out.println(line);
+        }
+    }
 
     public static void printChips(int chips) {
         System.out.println("***************");
