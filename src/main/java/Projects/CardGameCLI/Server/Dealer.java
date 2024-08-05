@@ -62,7 +62,7 @@ public class Dealer implements Runnable {
         switch (request) {
             case "bet" -> {
                 this.game = new BlackJack(new ArrayList<>(Arrays.asList(deal(), deal())), new ArrayList<>(Arrays.asList(deal(), deal())), userbet );
-                outputObject.put("cards",  game.playerhand.cards.toString());
+                outputObject.put("cards",  game.playerhand.toString());
                 outputObject.put("dealercards", game.dealerHand.cards.get(0).toString());
                 this.action = gamestates.INPLAY;
                 // process the bet and deal cards
