@@ -55,17 +55,14 @@ public class GUI {
             System.out.println(line);
         }
     }
-    private static String[] getcards(String cards) {        
-        int len = cards.length();
-        String[] result = new String[(len + 1) / 2];
-        for (int i = 0; i < len; i += 2) {
-            if (i + 2 <= len) {
-                result[i / 2] = cards.substring(i, i + 2);
-            } else {
-                result[i / 2] = cards.substring(i);
-            }
+    private static String[] getcards(String cards) {
+            // Split the input string by commas
+            String[] result = cards.split(",");
+            
+            // Return the array of cards
+            return result;
         }
-        return result;}
+        
 
     public static void printCards(String cards) {
         String[] cardsList = getcards(cards);
@@ -74,8 +71,24 @@ public class GUI {
         for (int i = 0; i < 7; i++) {
             StringBuilder lineBuilder = new StringBuilder();
             for (String card : cardsList) {
-            char value = card.charAt(0);
             char face = card.charAt(1);
+            char value = card.charAt(0);
+            if (value == '1') {
+                String tenvalue = card.substring(0, 2);
+                face = card.charAt(2);
+                String[] lines = new String[7];
+                lines[0] = "┌─────────┐";
+                lines[1] = String.format("│ %-2s      │", tenvalue);
+                lines[2] = "│         │";
+                lines[3] = String.format("│    %s    │", face);
+                lines[4] = "│         │";
+                lines[5] = String.format("│      %-2s │", tenvalue);
+                lines[6] = "└─────────┘";
+
+                lineBuilder.append(lines[i]).append("");
+                cardLines[i] = lineBuilder.toString();
+            }
+            else {
                 String[] lines = new String[7];
                 lines[0] = "┌─────────┐";
                 lines[1] = String.format("│ %-2s      │", value);
@@ -86,7 +99,8 @@ public class GUI {
                 lines[6] = "└─────────┘";
 
                 lineBuilder.append(lines[i]).append("");
-                cardLines[i] = lineBuilder.toString();
+                cardLines[i] = lineBuilder.toString();}
+                
             }
         }
 
