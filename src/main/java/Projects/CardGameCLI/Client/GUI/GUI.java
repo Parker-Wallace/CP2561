@@ -71,9 +71,10 @@ public class GUI {
         for (int i = 0; i < 7; i++) {
             StringBuilder lineBuilder = new StringBuilder();
             for (String card : cardsList) {
-            char face = card.charAt(1);
-            char value = card.charAt(0);
-            if (value == '1') {
+                char face = card.charAt(1);
+                char value = card.charAt(0);
+                
+                if (value == '1') {
                 String tenvalue = card.substring(0, 2);
                 face = card.charAt(2);
                 String[] lines = new String[7];
@@ -100,7 +101,18 @@ public class GUI {
 
                 lineBuilder.append(lines[i]).append("");
                 cardLines[i] = lineBuilder.toString();}
-                
+                if (cardsList.length == 1) {
+                    String[] lines = new String[7];
+                    lines[0] = "┌─────────┐";
+                    lines[1] = String.format("│         │");
+                    lines[2] = "│         │";
+                    lines[3] = String.format("│         │");
+                    lines[4] = "│         │";
+                    lines[5] = String.format("│         │");
+                    lines[6] = "└─────────┘";
+                    lineBuilder.append(lines[i]).append("");
+                    cardLines[i] = lineBuilder.toString();
+                }
             }
         }
 
